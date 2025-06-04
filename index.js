@@ -53,11 +53,10 @@ let originalSources = [
 function init() {
 	dialog = document.getElementById("dialog");
 	dialogh2 = dialog.querySelector("h2");
-	dialogImg = dialog.querySelector(".img-container img");
+	dialogImg = dialog.querySelector("#dialog > img");
 	dialogSourceText = dialog.querySelector("p .text");
 
 	images = initializeImages();
-	console.log("hier");
 }
 
 function initializeImages() {
@@ -73,7 +72,6 @@ function initializeImages() {
 
 function onClickCloseDialogBtn() {
 	closeDialog();
-	swapImage({ src: "", alt: "" }, "");
 }
 
 function onClickCloseDialogBody() {
@@ -94,12 +92,12 @@ function onClickLRightNav() {
 
 function onClickBackToStart() {
 	imgIndex = 0;
-	swapImage(images[0], originalSources[0]);
+	swapDialogImage(images[0], originalSources[0]);
 }
 
 function onClickImg(event, index) {
 	if (!isDialogOpen()) {
-		swapImage(images[index], originalSources[index]);
+		swapDialogImage(images[index], originalSources[index]);
 		imgIndex = index;
 		openDialog();
 		event.stopPropagation();
@@ -120,10 +118,10 @@ function navigateDialog(images, direction) {
 		imgIndex = 0;
 	}
 
-	swapImage(images[imgIndex], originalSources[imgIndex]);
+	swapDialogImage(images[imgIndex], originalSources[imgIndex]);
 }
 
-function swapImage(image, source) {
+function swapDialogImage(image, source) {
 	dialogh2.innerText = image.alt;
 	dialogImg.src = image.src;
 	dialogImg.alt = image.alt;

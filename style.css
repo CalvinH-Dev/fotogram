@@ -27,10 +27,10 @@ button {
 
 body {
 	font-family: "Dancing Script";
-	font-size: 16px;
+	font-size: 24px;
 	min-height: 100vh;
 	--box-shadow: 0px 0px 1px 1px black, 0px 0px 1px 2px #e3c567;
-	--box-shadow-hover: 0px 0px 1px 2px black, 0px 0px 1px 4px #e3c567;
+	--box-shadow-hover: 0px 0px 2px 2px black, 0px 0px 2px 4px #e3c567;
 }
 
 header,
@@ -62,6 +62,8 @@ footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
+	gap: 20px;
 }
 
 footer .logo {
@@ -112,7 +114,7 @@ h1 {
 }
 
 .hero .img-container {
-	height: 110px;
+	height: 150px;
 	aspect-ratio: 1;
 	overflow: hidden;
 	box-shadow: var(--box-shadow);
@@ -142,13 +144,14 @@ h1 {
 	transform: translate(-50%, -50%);
 	--dia-height: 75vh;
 	height: var(--dia-height);
-	width: max(280px, 35vw);
+	width: calc(280px + (420 * ((100vw - 320px) / 1600)));
+	min-width: 280px;
 
 	background-color: rgba(68, 54, 39, 0.7);
 
 	display: grid;
 	grid-template-rows: 15vh calc(var(--dia-height) - 40vh - 6vh) 15vh 10vh;
-
+	justify-items: center;
 	/* display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -201,7 +204,7 @@ h1 {
 	height: 100%;
 }
 
-#dialog .img-container img {
+#dialog > img {
 	object-fit: contain;
 	max-width: 100%;
 	width: min-content;
@@ -223,7 +226,7 @@ h1 {
 	align-items: center;
 	padding: 4px 10px;
 	font-family: "Dancing Script";
-	font-size: 20px;
+	font-size: calc(22px + (10 * ((100vw - 320px) / 1600)));
 	font-weight: bold;
 }
 
@@ -245,7 +248,7 @@ h1 {
 #dialog h2 {
 	font-family: "Libre Baskerville";
 	color: white;
-	font-size: 22px;
+	font-size: calc(22px + (10 * ((100vw - 320px) / 1600)));
 }
 
 #dialog p {
@@ -253,7 +256,7 @@ h1 {
 	width: 100%;
 	padding-block: 2vh;
 	height: 100%;
-	font-size: 10px;
+	font-size: 18px;
 	color: white;
 	display: flex;
 	align-items: start;
