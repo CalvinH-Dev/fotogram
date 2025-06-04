@@ -1,77 +1,130 @@
 let dialog;
 let dialogh2;
 let dialogImg;
+let dialogSourceText;
+let imgIndex;
+let images;
+
+let imageSources = [
+	"img/gallery/webp/adrianna-geo-1rBg5YSi00c-unsplash.webp",
+	"img/gallery/webp/birmingham-museums-trust-8wcoY3wcbL0-unsplash.webp",
+	"img/gallery/webp/birmingham-museums-trust-G1Z0cIMYHVM-unsplash.webp",
+	"img/gallery/webp/birmingham-museums-trust-HEEvYhNzpEo-unsplash.webp",
+	"img/gallery/webp/birmingham-museums-trust-sJr8LDyEf7k-unsplash.webp",
+	"img/gallery/webp/birmingham-museums-trust-wKlHsooRVbg-unsplash.webp",
+	"img/gallery/webp/boston-public-library-YoK5pBcSY8s-unsplash.webp",
+	"img/gallery/webp/europeana-5TK1F5VfdIk-unsplash.webp",
+	"img/gallery/webp/europeana-TjegK_z-0j8-unsplash.webp",
+	"img/gallery/webp/jene-stephaniuk--MCrF6hnojU-unsplash.webp",
+	"img/gallery/webp/rhondak-native-florida-folk-artist-_Yc7OtfFn-0-unsplash.webp",
+	"img/gallery/webp/tamara-menzi-n-vnWQmmVoY-unsplash.webp",
+];
+
+let imageAlts = [
+	"Ein Gemälde an der Decke eines Gebäudes",
+	"Schafherde auf Straßenmalerei",
+	"Ein Gemälde eines Mannes und einer Frau, die nebeneinander sitzen",
+	"Ein Gemälde von Menschen in einem Boot auf einem Fluss",
+	"Ein Gemälde einer Burg auf einem Hügel",
+	"Braune und graue Bäume und Felsformationen",
+	"Brauner und schwarzer Vogel auf grüner Pflanze",
+	"Blumen mit roten, blauen und weißen Blüten",
+	"Braunes und weißes Segelschiff auf Seemalerei",
+	"rote, blaue und gelbe abstrakte Malerei",
+	"Pinsel in verschiedenen Farben",
+	"Grün belaubte Bäume",
+];
+
+let originalSources = [
+	"https://unsplash.com/de/fotos/ein-gemalde-an-der-decke-eines-gebaudes-1rBg5YSi00c",
+	"https://unsplash.com/de/fotos/schafherde-auf-strassenmalerei-8wcoY3wcbL0",
+	"https://unsplash.com/de/fotos/ein-gemalde-eines-mannes-und-einer-frau-die-nebeneinander-sitzen-G1Z0cIMYHVM",
+	"https://unsplash.com/de/fotos/ein-gemalde-von-menschen-in-einem-boot-auf-einem-fluss-HEEvYhNzpEo",
+	"https://unsplash.com/de/fotos/ein-gemalde-einer-burg-auf-einem-hugel-sJr8LDyEf7k",
+	"https://unsplash.com/de/fotos/braune-und-graue-baume-und-felsformationen-wKlHsooRVbg",
+	"https://unsplash.com/de/fotos/brauner-und-schwarzer-vogel-auf-gruner-pflanze-YoK5pBcSY8s",
+	"https://unsplash.com/de/fotos/rote-blaue-und-weisse-bluten-5TK1F5VfdIk",
+	"https://unsplash.com/de/fotos/braunes-und-weisses-segelschiff-auf-seemalerei-TjegK_z-0j8",
+	"https://unsplash.com/de/fotos/rote-blaue-und-gelbe-abstrakte-malerei--MCrF6hnojU",
+	"https://unsplash.com/de/fotos/assorted-color-paintbrushes-_Yc7OtfFn-0",
+	"https://unsplash.com/de/fotos/grun-belaubte-baume-n-vnWQmmVoY",
+];
 
 function init() {
-	let images = document.querySelectorAll(".hero .img-container img");
-	let body = document.querySelector("body");
 	dialog = document.getElementById("dialog");
 	dialogh2 = dialog.querySelector("h2");
-	let dialogBtn = dialog.querySelector("button");
-	dialogImg = dialog.querySelector("img");
-	let dialogNavBtnLeft = dialog.querySelector(".left");
-	let dialogNavBtnRight = dialog.querySelector(".right");
+	dialogImg = dialog.querySelector(".img-container img");
+	dialogSourceText = dialog.querySelector("p .text");
 
-	body.addEventListener("click", function (event) {
-		closeDialog();
-	});
-
-	dialogBtn.addEventListener("click", (event) => {
-		closeDialog();
-		swapImage({ src: "", alt: "" });
-		event.stopPropagation();
-	});
-
-	for (let i = 0; i < images.length; i++) {
-		images[i].addEventListener("click", function (event) {
-			swapImage(event.target);
-			openDialog();
-			event.stopPropagation();
-		});
-	}
-
-	dialogNavBtnLeft.addEventListener("click", function (event) {
-		let index;
-		for (let i = 0; i < images.length; i++) {
-			if (images[i].src == dialogImg.src) {
-				index = i;
-				break;
-			}
-		}
-		navigateDialog(images, index, -1);
-		event.stopPropagation();
-	});
-
-	dialogNavBtnRight.addEventListener("click", function (event) {
-		let index;
-		for (let i = 0; i < images.length; i++) {
-			if (images[i].src == dialogImg.src) {
-				index = i;
-				break;
-			}
-		}
-		navigateDialog(images, index, 1);
-		event.stopPropagation();
-	});
+	images = initializeImages();
 }
 
-function viewTemplate(image) {}
-
-function navigateDialog(images, index, direction) {
-	let newIndex = index + direction;
-	if (newIndex < 0) {
-		newIndex = images.length - 1;
-	} else if (newIndex > images.length - 1) {
-		newIndex = 0;
+function initializeImages() {
+	let imageDiv = document.querySelector(".images");
+	let str = "";
+	for (let i = 0; i < imageSources.length; i++) {
+		str += imgTemplate(imageSources[i], imageAlts[i], i);
 	}
 
-	swapImage(images[newIndex]);
+	imageDiv.innerHTML = str;
+	return document.querySelectorAll(".hero .img-container img");
 }
 
-function swapImage(image) {
+function onClickCloseDialogBtn() {
+	closeDialog();
+	swapImage({ src: "", alt: "" }, "");
+}
+
+function onClickCloseDialogBody(event) {
+	closeDialog();
+}
+
+function onclickDialog(event) {
+	event.stopPropagation();
+}
+
+function onClickLeftNav() {
+	navigateDialog(images, -1);
+}
+
+function onClickLRightNav() {
+	navigateDialog(images, 1);
+}
+
+function onClickBackToStart() {
+	imgIndex = 0;
+	swapImage(images[0], originalSources[0]);
+}
+
+function onClickImg(event, index) {
+	swapImage(images[index], originalSources[index]);
+	imgIndex = index;
+	openDialog();
+	event.stopPropagation();
+}
+
+function imgTemplate(src, alt, index) {
+	return `<div class="img-container">
+						<img src="${src}" alt="${alt}" onclick="onClickImg(event, ${index})" />
+					</div>`;
+}
+
+function navigateDialog(images, direction) {
+	imgIndex += direction;
+	if (imgIndex < 0) {
+		imgIndex = images.length - 1;
+	} else if (imgIndex > images.length - 1) {
+		imgIndex = 0;
+	}
+
+	swapImage(images[imgIndex], originalSources[imgIndex]);
+}
+
+function swapImage(image, source) {
 	dialogh2.innerText = image.alt;
 	dialogImg.src = image.src;
 	dialogImg.alt = image.alt;
+	dialogSourceText.innerText = source;
 }
 
 function openDialog() {

@@ -8,73 +8,38 @@
 		<script src="index.js"></script>
 		<title>Fotogram</title>
 	</head>
-	<body onload="init()">
-		<div id="dialog" class="d_none">
-			<button>X</button>
-			<h2>Das ist ein h2 text</h2>
-			<img src="" alt="" />
-			<div class="nav-buttons"><button class="left"></button><button class="right"></button></div>
+	<body onload="init()" onclick="onClickCloseDialogBody(event)">
+		<div id="dialog" onclick="onclickDialog(event)" class="d_none">
+			<div class="headline-container">
+				<h2>Das ist ein h2 text</h2>
+			</div>
+			<button class="close-btn" onclick="onClickCloseDialogBtn()">
+				<img src="img/close.svg" alt="Button zum Schließen" />
+			</button>
+			<div class="img-container">
+				<img src="" alt="" width="200" height="400" />
+			</div>
+			<p><span class="source">Quelle:</span><span class="text">Das ist 1 Text</span></p>
+			<div class="nav-buttons">
+				<button class="left" onclick="onClickLeftNav()">
+					<img src="img/left-arrow.svg" alt="Pfeil nach links" /></button
+				><button class="middle" onclick="onClickBackToStart()"><span>Zum Anfang</span></button
+				><button class="right" onclick="onClickLRightNav()">
+					<img src="img/right-arrow.svg" alt="Pfeil nach rechts" />
+				</button>
+			</div>
 		</div>
 		<header><img class="logo" src="img/Fotogram_Logo.svg" alt="" /></header>
 		<main>
 			<section class="hero">
-				<h1>Hallo das ist eine Überschrift</h1>
-				<div class="images">
-					<div class="img-container">
-						<img src="img/gallery/webp/adrianna-geo-1rBg5YSi00c-unsplash.webp" alt="test alt" />
-					</div>
-					<div class="img-container">
-						<img src="img/gallery/webp/birmingham-museums-trust-8wcoY3wcbL0-unsplash.webp" alt="" />
-					</div>
-					<div class="img-container">
-						<img src="img/gallery/webp/birmingham-museums-trust-G1Z0cIMYHVM-unsplash.webp" alt="" />
-					</div>
-					<div class="img-container">
-						<img src="img/gallery/webp/birmingham-museums-trust-HEEvYhNzpEo-unsplash.webp" alt="" />
-					</div>
-					<div class="img-container">
-						<img src="img/gallery/webp/birmingham-museums-trust-sJr8LDyEf7k-unsplash.webp" alt="" />
-					</div>
-					<div class="img-container">
-						<img src="img/gallery/webp/birmingham-museums-trust-wKlHsooRVbg-unsplash.webp" alt="" />
-					</div>
-					<div class="img-container">
-						<img src="img/gallery/webp/boston-public-library-YoK5pBcSY8s-unsplash.webp" alt="" />
-					</div>
-					<div class="img-container">
-						<img src="img/gallery/webp/europeana-5TK1F5VfdIk-unsplash.webp" alt="" />
-					</div>
-					<div class="img-container">
-						<img src="img/gallery/webp/europeana-TjegK_z-0j8-unsplash.webp" alt="" />
-					</div>
-					<div class="img-container">
-						<img src="img/gallery/webp/jene-stephaniuk--MCrF6hnojU-unsplash.webp" alt="" />
-					</div>
-					<div class="img-container">
-						<img
-							src="img/gallery/webp/rhondak-native-florida-folk-artist-_Yc7OtfFn-0-unsplash.webp"
-							alt=""
-						/>
-					</div>
-					<div class="img-container">
-						<img src="img/gallery/webp/tamara-menzi-n-vnWQmmVoY-unsplash.webp" alt="" />
-					</div>
-				</div>
+				<h1>Willkommen!</h1>
+				<div class="images"></div>
 			</section>
 		</main>
 		<footer>
-			<img class="logo" src="img/favicon.svg" alt="" /><span>Hallo das ist ein Text!</span>
+			<img class="logo" src="img/favicon.svg" alt="" /><span
+				>Hallo das ist ein Text im Footer!</span
+			>
 		</footer>
 	</body>
-	<!-- sources:
-	 https://unsplash.com/de/fotos/assorted-color-paintbrushes-_Yc7OtfFn-0?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
-	 https://unsplash.com/de/fotos/ein-gemalde-an-der-decke-eines-gebaudes-1rBg5YSi00c?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
-	 https://unsplash.com/de/fotos/braune-und-graue-baume-und-felsformationen-wKlHsooRVbg?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
-	 https://unsplash.com/de/fotos/ein-gemalde-einer-burg-auf-einem-hugel-sJr8LDyEf7k?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
-	 https://unsplash.com/de/fotos/brauner-und-schwarzer-vogel-auf-gruner-pflanze-YoK5pBcSY8s?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
-	 https://unsplash.com/de/fotos/brauner-und-schwarzer-vogel-auf-gruner-pflanze-YoK5pBcSY8s?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
-	 https://unsplash.com/de/fotos/schafherde-auf-strassenmalerei-8wcoY3wcbL0?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
-	 https://unsplash.com/de/fotos/ein-gemalde-von-menschen-in-einem-boot-auf-einem-fluss-HEEvYhNzpEo?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
-	 https://unsplash.com/de/fotos/grun-belaubte-baume-n-vnWQmmVoY?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
-	 https://unsplash.com/de/fotos/ein-gemalde-eines-mannes-und-einer-frau-die-nebeneinander-sitzen-G1Z0cIMYHVM?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash -->
 </html>

@@ -1,11 +1,34 @@
+@font-face {
+	font-family: "Dancing Script";
+	src: url(fonts/Dancing_Script/DancingScript-VariableFont_wght.ttf);
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	user-select: none;
+}
+
+#dialog,
+img,
+.img-container {
+	border-radius: 10px;
+}
+
+button {
+	background-color: #d5dcf9;
 }
 
 body {
+	font-family: "Dancing Script";
+	font-weight: 300;
+	font-size: 20px;
 	min-height: 100vh;
+	--box-shadow: 0px 0px 1px 1px black;
+	--box-shadow-inset: 0px 0px 2px 1px black inset;
+	--box-shadow-hover: 0px 0px 1px 1px white;
+	--box-shadow-img: 0px 0px 1px 1px black, 0px 0px 1px 2px white;
 }
 
 header,
@@ -18,7 +41,8 @@ footer {
 header,
 footer {
 	height: 10vh;
-	background-color: blue;
+	background-color: #725e54;
+	box-shadow: var(--box-shadow);
 }
 
 header {
@@ -34,7 +58,7 @@ header .logo {
 
 footer {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 }
 
@@ -49,7 +73,7 @@ footer span {
 
 .hero {
 	min-height: 80vh;
-	background-color: black;
+	background-color: #443627;
 	padding-inline: max(24px, calc((100% - 1000px) / 2));
 	padding-block: 4vh;
 
@@ -59,12 +83,18 @@ footer span {
 	align-content: center;
 	flex-direction: column;
 	gap: 2vh;
+	box-shadow: var(--box-shadow);
 }
 
 h1,
 h2 {
 	text-align: center;
 	color: white;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 72px;
 }
 
 .images {
@@ -82,11 +112,11 @@ h2 {
 	height: 110px;
 	aspect-ratio: 1;
 	overflow: hidden;
+	box-shadow: var(--box-shadow-img);
 }
 
 .hero .img-container:hover {
-	box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 4px, rgba(255, 255, 255, 0.3) 0px 7px 13px -3px,
-		rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+	box-shadow: var(--box-shadow-hover);
 }
 
 .hero .img-container img {
@@ -103,34 +133,70 @@ h2 {
 #dialog {
 	position: fixed;
 
-	top: calc(50vh - 600px / 2);
-	left: calc(50% - 400px / 2);
-	height: 600px;
-	width: 400px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	height: 75vh;
+	width: max(280px, 40vw);
 
 	background-color: black;
 
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	gap: 4vh;
 
-	padding: 2vh 2vw;
+	padding-block: 3vh;
+	padding-inline: max(24px, 5vw);
 
 	z-index: 100;
+
+	box-shadow: var(--box-shadow-hover);
 }
 
 #dialog button {
-	align-self: end;
-	width: 50px;
+	border: 1px solid white;
+	box-shadow: var(--box-shadow-img);
+	transition: filter 225ms linear, box-shadow 225ms linear;
+}
+
+#dialog button:hover {
+	box-shadow: 0px 0px 0px 2px black, 0px 0px 1px 3px white;
+	filter: brightness(150%);
+}
+
+#dialog .close-btn {
+	border-top-right-radius: 5px;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	width: 30px;
 	aspect-ratio: 1;
 }
 
-#dialog img {
+.close-btn img {
+	width: 100%;
+	height: 100%;
 	object-fit: cover;
-	max-width: 100%;
-	max-height: 50%;
+}
+
+#dialog .dialog-header {
+	display: flex;
+	align-items: start;
+}
+
+#dialog .img-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#dialog .img-container img {
+	object-fit: contain;
+	width: 100%;
+	height: 40vh;
+	box-shadow: 0px 0px 1px 2px black, 0px 0px 2px 3px white;
 }
 
 #dialog .nav-buttons {
@@ -141,12 +207,88 @@ h2 {
 }
 
 #dialog .nav-buttons button {
-	width: 120px;
-	height: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* height: 25px; */
+	padding: 4px 10px;
+	font-family: "Dancing Script";
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#dialog .nav-buttons button > img {
+	width: 20px;
+	aspect-ratio: 1;
+}
+
+#dialog .headline-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-block: 2vh;
+	height: 15vh;
+	justify-self: center;
+	word-break: break-word;
+}
+
+#dialog h2 {
+	font-size: 24px;
+	text-shadow: 1px 1px 3px #f5e960;
+}
+
+#dialog p {
+	height: 75px;
+	width: 100%;
+	padding-block: 2vh;
+	height: 20vh;
+	font-size: 16px;
+	color: white;
+	display: flex;
+	align-items: start;
+	justify-content: start;
+	flex-direction: column;
+	gap: 10px;
+	word-break: break-word;
+}
+
+#dialog .source {
+	color: #f5e960;
+	font-weight: bold;
+	font-family: system-ui;
+	text-shadow: 0px 0px 1px white;
+}
+
+#dialog .text {
+	font-weight: 250;
+	font-family: system-ui;
+	text-shadow: 1px 1px 2px white;
+}
+
+.left {
+	border-bottom-left-radius: 6px;
+}
+
+.right {
+	border-bottom-right-radius: 6px;
 }
 
 .d_none {
 	display: none;
 	visibility: hidden;
 	overflow: hidden;
+}
+
+@media (width <= 720px) {
+	h1,
+	p {
+		scale: 0.8;
+	}
+}
+
+@media (width <= 720px) {
+	h1,
+	p {
+		scale: 0.8;
+	}
 }
