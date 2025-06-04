@@ -55,7 +55,7 @@ header {
 
 header .logo {
 	padding: 1vh 0;
-	height: 8vh;
+	height: 6vh;
 }
 
 footer {
@@ -292,6 +292,10 @@ h1 {
 @media (width <= 720px) {
 	h1 {
 		scale: 0.8;
+	}
+
+	footer .logo {
+		height: 4vh;
 	}
 }
 

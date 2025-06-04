@@ -1,9 +1,9 @@
-let dialog;
-let dialogh2;
-let dialogImg;
-let dialogSourceText;
-let imgIndex;
-let images;
+let dialog = document.getElementById("dialog");
+let dialogh2 = dialog.querySelector("h2");
+let dialogImg = dialog.querySelector("#dialog > img");
+let dialogSourceText = dialog.querySelector("p .text");
+let imgIndex = 0;
+let images = [];
 
 let imageSources = [
 	"img/gallery/webp/adrianna-geo-1rBg5YSi00c-unsplash.webp",
@@ -51,10 +51,10 @@ let originalSources = [
 ];
 
 function init() {
-	dialog = document.getElementById("dialog");
-	dialogh2 = dialog.querySelector("h2");
-	dialogImg = dialog.querySelector("#dialog > img");
-	dialogSourceText = dialog.querySelector("p .text");
+	// dialog = document.getElementById("dialog");
+	// dialogh2 = dialog.querySelector("h2");
+	// dialogImg = dialog.querySelector("#dialog > img");
+	// dialogSourceText = dialog.querySelector("p .text");
 
 	initializeImages();
 }
@@ -86,7 +86,7 @@ function onClickLeftNav() {
 	navigateDialog(images, -1);
 }
 
-function onClickLRightNav() {
+function onClickRightNav() {
 	navigateDialog(images, 1);
 }
 
