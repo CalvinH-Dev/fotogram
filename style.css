@@ -269,6 +269,7 @@ h1 {
 }
 
 #dialog .text {
+	user-select: all;
 	font-weight: 250;
 	font-family: system-ui;
 	text-overflow: ellipsis;
