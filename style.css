@@ -128,7 +128,7 @@ h1 {
 	height: 100%;
 	aspect-ratio: 1;
 	object-fit: cover;
-	transition: scale 1s;
+	transition: scale 225ms;
 }
 
 .hero .img-container img:hover {
