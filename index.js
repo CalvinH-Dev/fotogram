@@ -57,6 +57,7 @@ function init() {
 	dialogSourceText = dialog.querySelector("p .text");
 
 	images = initializeImages();
+	console.log("hier");
 }
 
 function initializeImages() {
@@ -75,7 +76,7 @@ function onClickCloseDialogBtn() {
 	swapImage({ src: "", alt: "" }, "");
 }
 
-function onClickCloseDialogBody(event) {
+function onClickCloseDialogBody() {
 	closeDialog();
 }
 
@@ -97,10 +98,12 @@ function onClickBackToStart() {
 }
 
 function onClickImg(event, index) {
-	swapImage(images[index], originalSources[index]);
-	imgIndex = index;
-	openDialog();
-	event.stopPropagation();
+	if (!isDialogOpen()) {
+		swapImage(images[index], originalSources[index]);
+		imgIndex = index;
+		openDialog();
+		event.stopPropagation();
+	}
 }
 
 function imgTemplate(src, alt, index) {
@@ -133,4 +136,8 @@ function openDialog() {
 
 function closeDialog() {
 	dialog.classList.add("d_none");
+}
+
+function isDialogOpen() {
+	return !dialog.classList.contains("d_none");
 }

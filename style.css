@@ -1,6 +1,11 @@
 @font-face {
 	font-family: "Dancing Script";
-	src: url(fonts/Dancing_Script/DancingScript-VariableFont_wght.ttf);
+	src: url(fonts//dancing-script-v25-latin/dancing-script-v25-latin-regular.woff2);
+}
+
+@font-face {
+	font-family: "Libre Baskerville";
+	src: url(fonts/libre-baskerville-v16-latin/libre-baskerville-v16-latin-regular.woff2);
 }
 
 * {
@@ -17,18 +22,15 @@ img,
 }
 
 button {
-	background-color: #d5dcf9;
+	background-color: #e3c567;
 }
 
 body {
 	font-family: "Dancing Script";
-	font-weight: 300;
-	font-size: 20px;
+	font-size: 16px;
 	min-height: 100vh;
-	--box-shadow: 0px 0px 1px 1px black;
-	--box-shadow-inset: 0px 0px 2px 1px black inset;
-	--box-shadow-hover: 0px 0px 1px 1px white;
-	--box-shadow-img: 0px 0px 1px 1px black, 0px 0px 1px 2px white;
+	--box-shadow: 0px 0px 1px 1px black, 0px 0px 1px 2px #e3c567;
+	--box-shadow-hover: 0px 0px 1px 2px black, 0px 0px 1px 4px #e3c567;
 }
 
 header,
@@ -73,7 +75,8 @@ footer span {
 
 .hero {
 	min-height: 80vh;
-	background-color: #443627;
+	background-color: rgb(68, 54, 39);
+
 	padding-inline: max(24px, calc((100% - 1000px) / 2));
 	padding-block: 4vh;
 
@@ -90,11 +93,11 @@ h1,
 h2 {
 	text-align: center;
 	color: white;
-	font-weight: bold;
 }
 
 h1 {
 	font-size: 72px;
+	font-family: "Dancing Script";
 }
 
 .images {
@@ -112,7 +115,8 @@ h1 {
 	height: 110px;
 	aspect-ratio: 1;
 	overflow: hidden;
-	box-shadow: var(--box-shadow-img);
+	box-shadow: var(--box-shadow);
+	transition: box-shadow 225ms;
 }
 
 .hero .img-container:hover {
@@ -136,33 +140,37 @@ h1 {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	--dia-height: 75vh;
+	height: var(--dia-height);
+	width: max(280px, 35vw);
 
-	height: 75vh;
-	width: max(280px, 40vw);
+	background-color: rgba(68, 54, 39, 0.7);
 
-	background-color: black;
+	display: grid;
+	grid-template-rows: 15vh calc(var(--dia-height) - 40vh - 6vh) 15vh 10vh;
 
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: center; */
 
 	padding-block: 3vh;
 	padding-inline: max(24px, 5vw);
 
 	z-index: 100;
 
-	box-shadow: var(--box-shadow-hover);
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	backdrop-filter: blur(10px);
 }
 
 #dialog button {
-	border: 1px solid white;
-	box-shadow: var(--box-shadow-img);
+	border: 1px solid black;
+	box-shadow: var(--box-shadow);
 	transition: filter 225ms linear, box-shadow 225ms linear;
 }
 
 #dialog button:hover {
-	box-shadow: 0px 0px 0px 2px black, 0px 0px 1px 3px white;
+	box-shadow: var(--box-shadow-hover);
 	filter: brightness(150%);
 }
 
@@ -190,12 +198,15 @@ h1 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 100%;
 }
 
 #dialog .img-container img {
 	object-fit: contain;
-	width: 100%;
-	height: 40vh;
+	max-width: 100%;
+	width: min-content;
+	height: min-content;
+	max-height: 100%;
 	box-shadow: 0px 0px 1px 2px black, 0px 0px 2px 3px white;
 }
 
@@ -210,7 +221,6 @@ h1 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* height: 25px; */
 	padding: 4px 10px;
 	font-family: "Dancing Script";
 	font-size: 20px;
@@ -233,36 +243,35 @@ h1 {
 }
 
 #dialog h2 {
-	font-size: 24px;
-	text-shadow: 1px 1px 3px #f5e960;
+	font-family: "Libre Baskerville";
+	color: white;
+	font-size: 22px;
 }
 
 #dialog p {
 	height: 75px;
 	width: 100%;
 	padding-block: 2vh;
-	height: 20vh;
-	font-size: 16px;
+	height: 100%;
+	font-size: 10px;
 	color: white;
 	display: flex;
 	align-items: start;
-	justify-content: start;
+	justify-content: center;
 	flex-direction: column;
-	gap: 10px;
 	word-break: break-word;
 }
 
 #dialog .source {
-	color: #f5e960;
+	color: #e3c567;
 	font-weight: bold;
 	font-family: system-ui;
-	text-shadow: 0px 0px 1px white;
 }
 
 #dialog .text {
 	font-weight: 250;
 	font-family: system-ui;
-	text-shadow: 1px 1px 2px white;
+	text-overflow: ellipsis;
 }
 
 .left {
