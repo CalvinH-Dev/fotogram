@@ -56,7 +56,7 @@ function init() {
 	dialogImg = dialog.querySelector("#dialog > img");
 	dialogSourceText = dialog.querySelector("p .text");
 
-	images = initializeImages();
+	initializeImages();
 }
 
 function initializeImages() {
@@ -67,7 +67,7 @@ function initializeImages() {
 	}
 
 	imageDiv.innerHTML = str;
-	return document.querySelectorAll(".hero .img-container img");
+	images = document.querySelectorAll(".hero .img-container img");
 }
 
 function onClickCloseDialogBtn() {
@@ -96,7 +96,7 @@ function onClickBackToStart() {
 }
 
 function onClickImg(event, index) {
-	if (!isDialogOpen()) {
+	if (dialog.classList.contains("d_none")) {
 		swapDialogImage(images[index], originalSources[index]);
 		imgIndex = index;
 		openDialog();
