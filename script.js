@@ -51,11 +51,6 @@ let originalSources = [
 ];
 
 function init() {
-	// dialog = document.getElementById("dialog");
-	// dialogh2 = dialog.querySelector("h2");
-	// dialogImg = dialog.querySelector("#dialog > img");
-	// dialogSourceText = dialog.querySelector("p .text");
-
 	initializeImages();
 }
 
