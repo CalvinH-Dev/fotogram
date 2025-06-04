@@ -63,7 +63,6 @@ footer {
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: 20px;
 }
 
 footer .logo {
@@ -292,15 +291,16 @@ h1 {
 }
 
 @media (width <= 720px) {
-	h1,
-	p {
+	h1 {
 		scale: 0.8;
 	}
 }
 
-@media (width <= 720px) {
-	h1,
-	p {
+@media (width <= 500px) {
+	h1 {
 		scale: 0.8;
+	}
+	footer {
+		justify-content: center;
 	}
 }
